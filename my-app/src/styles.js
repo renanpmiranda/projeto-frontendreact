@@ -1,10 +1,16 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import {createGlobalStyle} from 'styled-components';
 
-export const PaginaPrincipal = styled.div`
+export const GlobalStyle = createGlobalStyle`
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+`
+
+export const Container = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 70%;
-  border: 1px solid black;
-  gap: 20px;
-  padding: 20px;
+  height: 100vh;
 `
