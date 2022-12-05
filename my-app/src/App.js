@@ -1,55 +1,46 @@
-import styled,{createGlobalStyle} from 'styled-components';
+import AsideFiltros from './Componentes/AsideFiltros';
+import PaginaProdutos from './Componentes/PaginaProdutos';
+import AsideCarrinho from './Componentes/AsideCarrinho';
+import { GlobalStyle , Container} from './styles';
 import { useState } from 'react';
-import Produtos from "./Produtos/Produtos.json"
-import AsideFiltros from './Componentes/AsideFiltros/AsideFiltros';
-import AsideCarrinho from './Componentes/AsideCarrinho/AsideCarrinho';
-import CardCompra from './Componentes/CardCompra/CardCompra';
-import { PaginaPrincipal } from './styles';
 
-const GlobalStyle = createGlobalStyle`
-  *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
-const Container = styled.div`
-  display: flex;  
-`
+function App() {
+  
+    const [valorMin, setValorMin] = useState(0)
+    const [valorMax, setValorMax] = useState(50000)
+    const [buscaNome, setBuscaNome] = useState("")
 
-function App() {  
+    const onChangeValorMin = (e) => {
+        setValorMin(e.target.value)
+    }
 
-  const [filtroValorMin, setFiltroValorMin] = useState("")
-  const [filtroValorMax, setFiltroValorMax] = useState("")
-  const [buscaNome, setBuscaNome] = useState("")
+    const onChangeValorMax = (e) => {
+        setValorMax(e.target.value)
+    }
 
+    const onChangeBuscaNome = (e) => {
+        setBuscaNome(e.target.value)
+    }
+  
   return (
     <>
-      <GlobalStyle/>
-      <Container>
-        <AsideFiltros 
-          filtroValorMin={filtroValorMin}
-          setFiltroValorMin={setFiltroValorMin}
-          filtroValorMax={filtroValorMax}
-          setFiltroValorMax={setFiltroValorMax}
-          buscaNome={buscaNome}
-          setBuscaNome={setBuscaNome}
-        />
-        <PaginaPrincipal>
-          {Produtos.map((produto) => {
-            return (
-              <CardCompra
-                key={produto.id}
-                imagem={produto.imageUrl}
-                nome={produto.name}
-                valor={produto.value}
-              />
-            );
-          })}
-        </PaginaPrincipal>        
-        <AsideCarrinho/>        
-      </Container>  
-    </>   
+      <GlobalStyle/> 
+        <Container>     
+          <AsideFiltros 
+          valorMin={valorMin}          
+          onChangeValorMin={onChangeValorMin}
+          valorMax={valorMax}          
+          onChangeValorMax={onChangeValorMax}
+          buscaNome={buscaNome}               
+          onChangeBuscaNome={onChangeBuscaNome}          
+          />
+          <PaginaProdutos
+            valorMin={valorMin}
+            valorMax={valorMax}
+            buscaNome={buscaNome}/>
+          <AsideCarrinho/>
+      </Container>
+    </>
   );
 }
 
