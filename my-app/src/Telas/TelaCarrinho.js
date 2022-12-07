@@ -1,5 +1,13 @@
-import CardProduto from "../Componentes/CardProduto";
-import { Main } from "./TelaCarrinho.styled"
+import CardProduto from "../Componentes/CardProduto"
+import styled from "styled-components"
+
+const ContainerProdutos = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    row-gap:50px;
+    column-gap: 25px;
+`
 
 function TelaCarrinho(props) {
 
@@ -11,20 +19,25 @@ function TelaCarrinho(props) {
     )
 
     return (
-        <Main>
+        <>
             <h1>Carrinho</h1>
-            <hr/>
-            {carrinho.map((produto) => {
-                <CardProduto
-                    produto={produto}
-                    key={produto.id}
-                    estaNaTelaCarrinho={true}
-                    aumentarQuantidadeNoCarrinho={aumentarQuantidadeNoCarrinho}
-                    diminuirQuantidadeNoCarrinho={diminuirQuantidadeNoCarrinho}
-                    deletarDoCarrinho={deletarDoCarrinho}                
-                />
-            })}
-        </Main>
+                <hr/>
+                <a>Valor total da compra: $ {valorTotal},00</a>
+                <br/>
+                <br/>
+                <ContainerProdutos>
+                    {carrinho.map((produto) => (
+                        <CardProduto
+                            produto={produto}
+                            key={produto.id}
+                            estaNaTelaCarrinho={true}
+                            aumentarQuantidadeNoCarrinho={aumentarQuantidadeNoCarrinho}
+                            diminuirQuantidadeNoCarrinho={diminuirQuantidadeNoCarrinho}
+                            deletarDoCarrinho={deletarDoCarrinho}                
+                        />
+                    ))}    
+                    </ContainerProdutos>
+        </>
     )
 }
 

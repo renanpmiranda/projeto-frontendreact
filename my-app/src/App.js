@@ -11,6 +11,14 @@ function App() {
 
   const [ buscaNome, setBuscaNome ] = useState("")
 
+  const [ buscaOrdenado, setBuscaOrdenado ] = useState("")
+
+  const [ buscaTipo, setBuscaTipo ] = useState("")
+
+  const [valorMin, setValorMin] = useState(0)
+
+  const [valorMax, setValorMax] = useState(50000)
+
   const irParaTelaDeProdutos = () => {
     setTelaAtiva("TelaProdutos")
   }
@@ -75,6 +83,18 @@ function App() {
     setBuscaNome(e.target.value)
   }
 
+  const onChangeOrdenado = (e) => {
+    setBuscaOrdenado(e.target.value)
+  }
+
+  const onChangeValorMin = (e) => {
+    setValorMin(e.target.value)
+  }
+
+  const onChangeValorMax = (e) => {
+    setValorMax(e.target.value)
+  }
+
   const renderizarTela = () => {
     switch (telaAtiva) {
       case "TelaProdutos":
@@ -82,6 +102,10 @@ function App() {
           <TelaProdutos
             adicionarAoCarrinho={adicionarAoCarrinho}
             buscaNome={buscaNome}
+            valorMin={valorMin}
+            valorMax={valorMax}
+            buscaOrdenado={buscaOrdenado}
+            onChangeOrdenado={onChangeOrdenado}
           />)
       case "TelaCarrinho":
         return (
@@ -103,7 +127,11 @@ function App() {
         irParaCarrinho={irParaCarrinho}
         itensNoCarrinho={carrinho.length}
         buscaNome={buscaNome}
-        onChangeBuscaNome={onChangeBuscaNome}
+        onChangeBuscaNome={onChangeBuscaNome}        
+        valorMin={valorMin}
+        onChangeValorMin={onChangeValorMin}
+        valorMax={valorMax}
+        onChangeValorMax={onChangeValorMax}
       />
       {renderizarTela()}
     </>
