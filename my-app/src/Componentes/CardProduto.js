@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Heading, Button } from "@chakra-ui/react"
 
 const Card = styled.div`
     display: flex;
@@ -7,6 +8,7 @@ const Card = styled.div`
     align-items: center;   
     height: 370px;
     width: 250px;
+    gap: 10px;
 `
 
 const Image = styled.img`
@@ -26,8 +28,8 @@ function CardProduto (props) {
     return (
         <Card>
             <Image src={produto.imageUrl}></Image>
-            <p>{produto.name}</p>
-            <p>${produto.value}</p> 
+            <Heading size="sm">{produto.name}</Heading>
+            <p>$ {produto.value},00</p> 
             <ContainerBotoes>   
             {
                 estaNaTelaCarrinho &&
@@ -35,36 +37,36 @@ function CardProduto (props) {
             }  
             {
                 estaNaTelaCarrinho && produto.quantidade > 1
-                && <button
+                && <Button
                     onClick={() => diminuirQuantidadeNoCarrinho(produto)}
                 >
                     -
-                </button>
+                </Button>
             }
             {
                 estaNaTelaCarrinho &&
-                <button
+                <Button
                     onClick={() => aumentarQuantidadeNoCarrinho(produto)}
                 >
                     +   
-                </button>
+                </Button>
             }           
             {
                 estaNaTelaCarrinho && 
-                <button
+                <Button
                     onClick={() => deletarDoCarrinho(produto)}
                 >
                     X
-                </button>
+                </Button>
             }
             </ContainerBotoes>
             {
                 estaNaTelaProdutos &&
-                <button
+                <Button
                     onClick={() => adicionarAoCarrinho(produto)}
                 >
                     Adicionar ao Carrinho
-                </button>
+                </Button>
             } 
         </Card>
     )

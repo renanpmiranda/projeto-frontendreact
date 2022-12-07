@@ -2,6 +2,8 @@ import { useState } from "react";
 import TelaProdutos from "./Telas/TelaProdutos.js"
 import TelaCarrinho from "./Telas/TelaCarrinho.js"
 import Header from "./Componentes/Header"
+import { ChakraProvider } from "@chakra-ui/react"
+import { MainContainer } from "./styles.js";
 
 function App() {
 
@@ -11,9 +13,7 @@ function App() {
 
   const [ buscaNome, setBuscaNome ] = useState("")
 
-  const [ buscaOrdenado, setBuscaOrdenado ] = useState("")
-
-  const [ buscaTipo, setBuscaTipo ] = useState("")
+  const [ buscaOrdenado, setBuscaOrdenado ] = useState("")  
 
   const [valorMin, setValorMin] = useState(0)
 
@@ -121,20 +121,23 @@ function App() {
   }
 
   return (
-    <>
-      <Header
-        irParaTelaDeProdutos={irParaTelaDeProdutos}
-        irParaCarrinho={irParaCarrinho}
-        itensNoCarrinho={carrinho.length}
-        buscaNome={buscaNome}
-        onChangeBuscaNome={onChangeBuscaNome}        
-        valorMin={valorMin}
-        onChangeValorMin={onChangeValorMin}
-        valorMax={valorMax}
-        onChangeValorMax={onChangeValorMax}
-      />
-      {renderizarTela()}
-    </>
+    <ChakraProvider>
+      <MainContainer>
+        <Header
+          irParaTelaDeProdutos={irParaTelaDeProdutos}
+          irParaCarrinho={irParaCarrinho}
+          itensNoCarrinho={carrinho.length}
+          buscaNome={buscaNome}
+          onChangeBuscaNome={onChangeBuscaNome}        
+          valorMin={valorMin}
+          onChangeValorMin={onChangeValorMin}
+          valorMax={valorMax}
+          onChangeValorMax={onChangeValorMax}
+        />
+        {renderizarTela()}
+      </MainContainer>
+    </ChakraProvider>
+    
   )
 }
 

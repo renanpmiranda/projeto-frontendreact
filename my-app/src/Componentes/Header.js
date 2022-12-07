@@ -1,3 +1,11 @@
+import { Heading, Text, Input, Stack, Button } from "@chakra-ui/react"
+import styled from "styled-components"
+
+const ButtonContainer = styled.div`
+    display: flex;
+    gap: 10px;
+`
+
 function Header(props) {
     const {
         irParaTelaDeProdutos,
@@ -13,56 +21,67 @@ function Header(props) {
 
     return (
         <>
-            <h1>Shop</h1>
-            <div>
-                <label>
+            <Heading color="blue">The Lunar Shop</Heading>
+            <Text>Seja bem vindo à loja de artigos espaciais mais famosa da galáxia!</Text>
+            <br/>
+            <ButtonContainer>
+                <Button onClick={irParaTelaDeProdutos} colorScheme="blue">
+                    Produtos
+                </Button>
+                
+                <Button onClick={irParaCarrinho} colorScheme="blue">
+                    Carrinho                    
+                </Button>
+                {
+                    itensNoCarrinho > 0 
+                    && <span>Itens no Carrinho: {itensNoCarrinho}</span>
+                }                
+            </ButtonContainer>
+            <br/>
+            <Stack>
+                <Text fontSize='5x1'>
                     Valor mínimo:
                     {" "}
-                <input 
-                    placeholder="$"                                  
-                    value={valorMin}
-                    onChange={onChangeValorMin}
-                />    
-                </label>            
-            </div>
+                    <Input 
+                        size="xs"
+                        width="auto" 
+                        placeholder="$"                                  
+                        value={valorMin}
+                        onChange={onChangeValorMin}
+                        type="number"
+                    />    
+                </Text>            
+            </Stack>
             <br/>
-            <div>
+            <Stack>
                 <label>
                     Valor máximo:
                     {" "}
-                <input 
+                <Input
+                    size="xs" 
+                    width="auto"
                     placeholder="$"                                  
                     value={valorMax}
                     onChange={onChangeValorMax}
+                    type="number"
                 />    
                 </label>            
-            </div>
+            </Stack>
             <br/>
             <div>
                 <label>
                     Buscar pelo nome:
                     {" "}
-                <input 
+                <Input
+                    size="xs"
+                    width="auto" 
                     placeholder="Digite aqui"                                  
                     value={buscaNome}
                     onChange={onChangeBuscaNome}
+                    type="text"
                 />    
                 </label>            
-            </div>
-            <br/>
-            <div>
-                <button onClick={irParaTelaDeProdutos}>
-                    Produtos
-                </button>
-                
-                <button onClick={irParaCarrinho}>
-                    Carrinho                    
-                </button>
-                {
-                    itensNoCarrinho > 0 
-                    && <span>Itens no Carrinho: {itensNoCarrinho}</span>
-                }                
-            </div>            
+            </div>                   
         </>
     )
 

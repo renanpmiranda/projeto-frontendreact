@@ -10,7 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `
 
-export const Container = styled.div`
-  display: flex;
-  height: 100vh;
+export const MainContainer = styled.div`
+  padding: 25px;
+  background-color: lightgray;
 `
