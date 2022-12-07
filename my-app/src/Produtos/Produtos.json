@@ -51,5 +51,11 @@
     "name": "Nave X-Wing Restaurada",
     "value": 20000.0,
     "imageUrl":"https://d2kspx2x29brck.cloudfront.net/img/iea/9lwjZ711wE/star-warss-mighty-x-wing-fighter-comes-to-life-in-russia.jpg"
+  },
+  {
+    "id": "010",
+    "name": "Pet Alienígena",
+    "value": 10000.0,
+    "imageUrl": "https://cf.shopee.com.br/file/sg-11134201-22110-34r0b3h2zakv9f"
   }
 ]
