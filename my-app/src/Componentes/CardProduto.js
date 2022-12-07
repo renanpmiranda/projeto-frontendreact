@@ -21,13 +21,51 @@ const AddToCartButton = styled.button`
     cursor: pointer;    
 `
 
-function CardProduto ({name, imageUrl, value}) {
+function CardProduto (props) {
+
+    const {produto, adicionarAoCarrinho, estaNaTelaProdutos, estaNaTelaCarrinho, aumentarQuantidadeNoCarrinho, diminuirQuantidadeNoCarrinho, deletarDoCarrinho} = props
+
     return (
         <Card>
-            <Image src={imageUrl}></Image>
-            <p>{name}</p>
-            <p>${value}</p>
-            <AddToCartButton>Adicionar ao carrinho</AddToCartButton>
+            <Image src={produto.imageUrl}></Image>
+            <p>{produto.name}</p>
+            <p>${produto.value}</p>      
+            {
+                estaNaTelaCarrinho && produto.quantidade > 1
+                && <button
+                    onClick={() => diminuirQuantidadeNoCarrinho(produto)}
+                >
+                    -
+                </button>
+            }
+            {
+                estaNaTelaCarrinho &&
+                <button
+                    onClick={() => aumentarQuantidadeNoCarrinho(produto)}
+                >
+                    +   
+                </button>
+            } 
+            {
+                estaNaTelaProdutos &&
+                <button
+                    onClick={() => adicionarAoCarrinho(produto)}
+                >
+                    Adicionar ao Carrinho
+                </button>
+            }     
+            {
+                estaNaTelaCarrinho &&
+                <span>Quantidade: {produto.quantidade}</span>
+            }
+            {
+                estaNaTelaCarrinho && 
+                <button
+                    onClick={() => deletarDoCarrinho(produto)}
+                >
+                    X
+                </button>
+            }
         </Card>
     )
 }
