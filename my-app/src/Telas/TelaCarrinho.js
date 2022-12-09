@@ -1,5 +1,6 @@
 import CardProduto from "../Componentes/CardProduto"
 import styled from "styled-components"
+import { Heading } from "@chakra-ui/react"
 
 const ContainerProdutos = styled.div`
     display: flex;
@@ -20,7 +21,7 @@ function TelaCarrinho(props) {
 
     return (
         <>
-            <h1>Carrinho</h1>
+            <Heading color={"blue"}>Carrinho</Heading>
                 <hr/>
                 <a>Valor total da compra: $ {valorTotal},00</a>
                 <br/>
